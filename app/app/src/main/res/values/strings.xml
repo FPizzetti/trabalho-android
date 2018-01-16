@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Vota APP</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Vota APP</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="confirmacaoSenha">Confirmação Senha</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="search_title">Pesquisar</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+</resources>
