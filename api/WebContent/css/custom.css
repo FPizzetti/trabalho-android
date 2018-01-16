@@ -1,0 +1,26 @@
+body {
+	color: #4d4d4d;
+	font: 14px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	line-height: 18px;
+}
+
+.login-box {
+	box-shadow: 0 0 3px black;
+}
+
+.login-bg {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f6f6f6+47,ededed+100;White+3D+%231 */
+	background: rgb(255, 255, 255); /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)
+		0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100% );
+	/* FF3.6-15 */
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)
+		0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100% );
+	/* Chrome10-25,Safari5.1-6 */
+	background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%,
+		rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100% );
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#ffffff',
+		endColorstr='#ededed', GradientType=1 );
+	/* IE6-9 fallback on horizontal gradient */
+}
