@@ -4,39 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <ImageView
-        android:id="@+id/foto"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:textColor="#5d5d5d"
+    <TextView
+        android:id="@+id/nome"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/nomeCandidato"
-        android:layout_width="224dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/cpf"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
         android:paddingBottom="2dip"
-        android:paddingTop="6dip"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/foto"
-        android:layout_toEndOf="@+id/foto"
-        android:layout_above="@+id/partidoCandidato" />
-
-    <TextView
-        android:id="@+id/partidoCandidato"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/foto"
-        android:layout_toEndOf="@+id/foto"
-        android:layout_alignBottom="@+id/foto" />
+        android:layout_below="@+id/nome" />
 
 
 </RelativeLayout>

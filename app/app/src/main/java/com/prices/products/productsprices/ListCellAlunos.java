@@ -10,21 +10,21 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import model.Candidato;
+import model.Aluno;
 
-public class ListCellCandidatos extends BaseAdapter {
+public class ListCellAlunos extends BaseAdapter {
 
-    public List<Candidato> candidatos;
+    public List<Aluno> alunos;
     private final Activity context;
 
-    public ListCellCandidatos(Activity context, List<Candidato> list) {
+    public ListCellAlunos(Activity context, List<Aluno> list) {
         this.context = context;
-        this.candidatos = list;
+        this.alunos = list;
     }
 
     @Override
     public int getCount() {
-        return candidatos.size();
+        return alunos.size();
     }
 
     @Override
@@ -40,13 +40,11 @@ public class ListCellCandidatos extends BaseAdapter {
     public View getView(int position, final View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.list_item, null, true);
-        TextView txtTitle = (TextView) rowView.findViewById(R.id.nomeCandidato);
-        TextView txtId = (TextView) rowView.findViewById(R.id.partidoCandidato);
-        ImageView image = (ImageView) rowView.findViewById(R.id.foto);
+        TextView txtTitle = (TextView) rowView.findViewById(R.id.nome);
+        TextView txtId = (TextView) rowView.findViewById(R.id.cpf);
 
-        txtTitle.setText(candidatos.get(position).getNome());
-        txtId.setText(candidatos.get(position).getPartido());
-        image.setImageBitmap(candidatos.get(position).getFoto());
+        txtTitle.setText(alunos.get(position).getNome());
+        txtId.setText(alunos.get(position).getCpf());
 
         return rowView;
     }

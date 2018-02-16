@@ -46,6 +46,25 @@ public class DAO {
         return response.body().string();
     }
 
+    public String doPut(String url, String json) throws IOException {
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(API_URL + url)
+                .put(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    public String doDelete(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(API_URL + url)
+                .delete()
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
     public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
         T[] arr = gson.fromJson(s, clazz);
         return Arrays.asList(arr); //or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
