@@ -1,0 +1,105 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TrabalhoAndroid",
+		"_postman_id": "4616dd7a-c2f7-b8a4-4192-9d30ed95ff4c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"request": {
+				"url": "http://localhost:30432/api-web/api/alunos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"10831383917\",\n    \"nome\": \"Luiz Gonçalves\",\n    \"idade\": 21,\n    \"endereco\": {\n        \"logradouro\":\"Avenida Alberico FLores Bueno\",\n        \"numero\":1862,\n        \"complemento\":\"Sobreloja\",\n        \"bairro\":\"Bairro Alto\",\n        \"cep\":\"828200070\",\n        \"cidade\":\"Curitiba\",\n        \"estado\":\"PR\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"url": "http://localhost:30432/api-web/api/alunos/GRR20183917",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"10831383917\",\n    \"nome\": \"Luiz Henrique Gonçalves\",\n    \"idade\": 21,\n    \"endereco\": {\n    \t\"id\": 1,\n        \"logradouro\":\"Rua Tavares de Lyra\",\n        \"numero\": 957,\n        \"complemento\":\"Ap 310\",\n        \"bairro\":\"Afonso Pena\",\n        \"cep\":\"83050000\",\n        \"cidade\":\"São José dos Pinhais\",\n        \"estado\":\"PR\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET",
+			"request": {
+				"url": "http://localhost:30432/api-web/api/alunos/GRR20183917",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"10831383917\",\n    \"nome\": \"Luiz Henrique Gonçalves\",\n    \"idade\": 21,\n    \"endereco\": {\n    \t\"id\": 1,\n        \"logradouro\":\"Rua Tavares de Lyra\",\n        \"numero\": 957,\n        \"complemento\":\"Ap 310\",\n        \"bairro\":\"Afonso Pena\",\n        \"cep\":\"83050000\",\n        \"cidade\":\"São José dos Pinhais\",\n        \"estado\":\"PR\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"url": "http://localhost:30432/api-web/api/alunos/GRR20183917",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LIST",
+			"request": {
+				"url": "http://localhost:30432/api-web/api/alunos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"10831383917\",\n    \"nome\": \"Luiz Henrique Gonçalves\",\n    \"idade\": 21,\n    \"endereco\": {\n    \t\"id\": 1,\n        \"logradouro\":\"Rua Tavares de Lyra\",\n        \"numero\": 957,\n        \"complemento\":\"Ap 310\",\n        \"bairro\":\"Afonso Pena\",\n        \"cep\":\"83050000\",\n        \"cidade\":\"São José dos Pinhais\",\n        \"estado\":\"PR\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

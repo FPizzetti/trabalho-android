@@ -1,7 +1,8 @@
 package model;
 
 public class Endereco {
-    
+
+    private int id;
     private String logradouro;
     private int numero;
     private String complemento;
@@ -9,6 +10,14 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getLogradouro() {
         return logradouro;
@@ -65,6 +74,5 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
-    
+
 }

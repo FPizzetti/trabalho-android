@@ -10,6 +10,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -42,13 +43,26 @@ public class AlunosResource {
         Aluno aluno = dao.read(id);
         return aluno;
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Aluno insereCliente(Aluno temp) {
+    public Aluno create(Aluno temp) {
         Aluno novo = dao.create(temp);
         return novo;
-    }      
+    }
 
+    @PUT
+    @Path("/{matricula}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Aluno update(Aluno aluno, @PathParam("matricula") String matricula) {
+        Aluno atualizado = dao.update(matricula, aluno);
+        return atualizado;
+    }
+
+    @DELETE
+    @Path("/{matricula}")
+    public void delete(@PathParam("matricula") String matricula) {
+        dao.delete(matricula);
+    }
 }
