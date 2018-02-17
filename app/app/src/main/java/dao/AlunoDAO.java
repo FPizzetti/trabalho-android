@@ -1,5 +1,7 @@
 package dao;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,22 +17,8 @@ public class AlunoDAO {
 
     public JSONArray getAlunos() {
         try {
-//            String data = dao.doGet("/alunos");
-            JSONArray array = new JSONArray("[{\n" +
-                    "\tid: \"grr20142291\",\n" +
-                    "\tcpf: \"09489264922\",\n" +
-                    "\tnome: \"felipe pizzetti\",\n" +
-                    "\tidade: 15,\n" +
-                    "\tendereco: {\n" +
-                    "\t\tlogradouro:\"rua das flores\",\n" +
-                    "\t\tnumero:13,\n" +
-                    "\t\tcomplemento:\"casa\",\n" +
-                    "\t\tbairro:\"pinehirinho\",\n" +
-                    "\t\tcep:\"81870290\",\n" +
-                    "\t\tcidade:\"curitiba\",\n" +
-                    "\t\testado:\"pr\"\n" +
-                    "\t}\n" +
-                    "}]\n");
+            String data = dao.doGet("/alunos");
+            JSONArray array = new JSONArray(data);
             return array;
         } catch (Exception e) {
             e.printStackTrace();
