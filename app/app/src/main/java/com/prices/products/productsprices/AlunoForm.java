@@ -73,9 +73,11 @@ public class AlunoForm extends AppCompatActivity {
         if (intent != null) {
             this.id = intent.getStringExtra("id");
             if (id != null && !"".equals(id)) {
+                fab.setVisibility(View.VISIBLE);
                 grr.setText(this.id);
                 //TODO load data from API
             } else {
+                fab.setVisibility(View.INVISIBLE);
                 grr.setText("Novo Aluno");
             }
         }
