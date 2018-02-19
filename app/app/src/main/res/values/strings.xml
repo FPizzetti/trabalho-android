@@ -8,8 +8,9 @@
     <string name="senha">Senha</string>
     <string name="confirmacaoSenha">Confirmação Senha</string>
     <string name="cadastrar">Cadastrar</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Dashboard</string>
     <string name="search_title">Pesquisar</string>
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_aluno_form">Formulário Aluno</string>
 
 </resources>

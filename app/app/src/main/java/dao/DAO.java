@@ -17,8 +17,7 @@ public class DAO {
 
     private OkHttpClient client;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private final String API_URL =
-            "http://192.168.1.19:8084/api-web/api/";
+    private final String API_URL = "http://192.168.1.19:8084/api-web/api";
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     public DAO() {

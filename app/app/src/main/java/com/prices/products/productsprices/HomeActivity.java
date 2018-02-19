@@ -1,5 +1,6 @@
 package com.prices.products.productsprices;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -58,8 +59,7 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                openActivity(null);
             }
         });
 
@@ -95,12 +95,9 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     private void openActivity(Aluno aluno) {
-//        Intent i = new Intent(this, CandidatosActivity.class);
-//            i.putExtra("votoVereador", votoVereador);
-//            i.putExtra("votoPrefeito", votoPrefeito);
-//        i.putExtra("candidatoSelecionado", candidato);
-//        i.putExtra("tipo", 1);
-//        startActivity(i);
+        Intent i = new Intent(this, AlunoForm.class);
+        i.putExtra("id", aluno != null ? aluno.getId() : null);
+        startActivity(i);
     }
 
     @Override
