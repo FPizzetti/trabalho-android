@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class Endereco implements Serializable {
-
+    private int id;
     private String logradouro;
     private int numero;
     private String complemento;
@@ -16,7 +16,8 @@ public class Endereco implements Serializable {
     private String cidade;
     private String estado;
 
-    public Endereco(String logradouro, int numero, String complemento, String bairro, String cep, String cidade, String estado) {
+    public Endereco(int id, String logradouro, int numero, String complemento, String bairro, String cep, String cidade, String estado) {
+        this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;

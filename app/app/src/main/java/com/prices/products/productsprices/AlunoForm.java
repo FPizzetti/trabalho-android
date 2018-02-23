@@ -1,6 +1,9 @@
 package com.prices.products.productsprices;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +26,7 @@ import model.Endereco;
 public class AlunoForm extends AppCompatActivity {
 
     private String id = null;
+    private int enderecoId = 0;
 
     private AlunoDAO alunoDAO;
 
@@ -91,6 +95,7 @@ public class AlunoForm extends AppCompatActivity {
                     idade.setText(obj.getString("idade"));
                     nome.setText(obj.getString("nome"));
                     JSONObject end = obj.getJSONObject("endereco");
+                    this.enderecoId = end.getInt("id");
                     logradouro.setText(end.getString("logradouro"));
                     numero.setText(end.getString("numero"));
                     complemento.setText(end.getString("complemento"));
@@ -99,7 +104,7 @@ public class AlunoForm extends AppCompatActivity {
                     cidade.setText(end.getString("cidade"));
                     estado.setText(end.getString("estado"));
                 } catch (Exception e) {
-
+                    this.showToast("Não foi possível recuperar os dados. Tente novamente mais tarde");
                 }
             } else {
                 fab.setVisibility(View.INVISIBLE);
@@ -134,26 +139,101 @@ public class AlunoForm extends AppCompatActivity {
 
     private void save() {
         try {
-            Endereco e = new Endereco(logradouro.getText().toString(), Integer.parseInt(numero.getText().toString()), complemento.getText().toString(), bairro.getText().toString(), cep.getText().toString(), cidade.getText().toString(), estado.getText().toString());
+            Endereco e = new Endereco(enderecoId, logradouro.getText().toString(), Integer.parseInt(numero.getText().toString()), complemento.getText().toString(), bairro.getText().toString(), cep.getText().toString(), cidade.getText().toString(), estado.getText().toString());
             Aluno a = new Aluno(this.id, cpf.getText().toString(), nome.getText().toString(), Integer.parseInt(idade.getText().toString()), e);
-            try {
-                alunoDAO.salvar(a);
-                Toast.makeText(this, "Aluno salvo com sucesso", Toast.LENGTH_SHORT).show();
-            } catch (Exception ex) {
-                Toast.makeText(this, "Não foi possível inserir o aluno", Toast.LENGTH_SHORT).show();
-            }
+            new SaveAlunoTask(a, this).execute();
         } catch (Exception e) {
             Toast.makeText(this, "Verifique as informações antes de salvar", Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     private void remove() {
-        try {
-            alunoDAO.removeById(this.id);
-            Toast.makeText(this, "Aluno removido com sucesso", Toast.LENGTH_SHORT).show();
-            finish();
-        } catch (Exception e) {
-            Toast.makeText(this, "Não foi possivel remover. Tente novamente mais tarde", Toast.LENGTH_SHORT).show();
+        new DeleteAlunoTask(this.id, this).execute();
+    }
+
+    private class SaveAlunoTask extends AsyncTask<String, Void, String> {
+
+        private Activity activity;
+        private ProgressDialog pd;
+        private Aluno aluno;
+
+        public SaveAlunoTask(Aluno aluno, Activity activity) {
+            this.aluno = aluno;
+            this.activity = activity;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                alunoDAO.salvar(aluno);
+            } catch (Exception e) {
+//                ((AlunoForm) activity).showToast("Não foi possível salvar o aluno");
+            }
+            pd.dismiss();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            ((AlunoForm) activity).showToast("Aluno salvo com sucesso");
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pd = new ProgressDialog(activity, R.style.AppTheme_Dark_Dialog);
+            pd.setIndeterminate(true);
+            pd.setMessage("Salvando...");
+            pd.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
+    }
+
+    private class DeleteAlunoTask extends AsyncTask<String, Void, String> {
+
+        private Activity activity;
+        private ProgressDialog pd;
+        private String id;
+
+        public DeleteAlunoTask(String id, Activity activity) {
+            this.id = id;
+            this.activity = activity;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                alunoDAO.removeById(this.id);
+                activity.finish();
+            } catch (Exception e) {
+//                ((AlunoForm) activity).showToast("Não foi possivel remover. Tente novamente mais tarde");
+            }
+            pd.dismiss();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            ((AlunoForm) activity).showToast("Aluno removido com sucesso");
+            activity.finish();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pd = new ProgressDialog(activity, R.style.AppTheme_Dark_Dialog);
+            pd.setIndeterminate(true);
+            pd.setMessage("Removendo...");
+            pd.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
         }
     }
 }
