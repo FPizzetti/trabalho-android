@@ -11,9 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import dao.AlunoDAO;
 import model.Aluno;
+import model.Endereco;
 
 
 public class AlunoForm extends AppCompatActivity {
@@ -26,12 +30,20 @@ public class AlunoForm extends AppCompatActivity {
     private Button cancelar;
 
     private TextView grr;
-    private EditText cpf;
     private EditText estado;
+    private EditText cpf;
+    private EditText idade;
+    private EditText nome;
+    private EditText logradouro;
+    private EditText numero;
+    private EditText complemento;
+    private EditText bairro;
+    private EditText cep;
+    private EditText cidade;
 
 
     public AlunoForm() {
-
+        alunoDAO = new AlunoDAO();
     }
 
     @Override
@@ -47,9 +59,7 @@ public class AlunoForm extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                //TODO Remove with confirmation
+                remove();
             }
         });
 
@@ -75,7 +85,22 @@ public class AlunoForm extends AppCompatActivity {
             if (id != null && !"".equals(id)) {
                 fab.setVisibility(View.VISIBLE);
                 grr.setText(this.id);
-                //TODO load data from API
+                try {
+                    JSONObject obj = alunoDAO.getByMatricula(this.id);
+                    cpf.setText(obj.getString("cpf"));
+                    idade.setText(obj.getString("idade"));
+                    nome.setText(obj.getString("nome"));
+                    JSONObject end = obj.getJSONObject("endereco");
+                    logradouro.setText(end.getString("logradouro"));
+                    numero.setText(end.getString("numero"));
+                    complemento.setText(end.getString("complemento"));
+                    bairro.setText(end.getString("bairro"));
+                    cep.setText(end.getString("cep"));
+                    cidade.setText(end.getString("cidade"));
+                    estado.setText(end.getString("estado"));
+                } catch (Exception e) {
+
+                }
             } else {
                 fab.setVisibility(View.INVISIBLE);
                 grr.setText("Novo Aluno");
@@ -90,7 +115,15 @@ public class AlunoForm extends AppCompatActivity {
 
         grr = (TextView) findViewById(R.id.grr);
         cpf = (EditText) findViewById(R.id.input_cpf);
+        idade = (EditText) findViewById(R.id.input_idade);
+        nome = (EditText) findViewById(R.id.input_nome);
 
+        logradouro = (EditText) findViewById(R.id.input_logradouro);
+        numero = (EditText) findViewById(R.id.input_numero);
+        complemento = (EditText) findViewById(R.id.input_complemento);
+        bairro = (EditText) findViewById(R.id.input_bairro);
+        cep = (EditText) findViewById(R.id.input_cep);
+        cidade = (EditText) findViewById(R.id.input_cidade);
         estado = (EditText) findViewById(R.id.input_estado);
         estado.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
     }
@@ -100,7 +133,27 @@ public class AlunoForm extends AppCompatActivity {
     }
 
     private void save() {
-//        Aluno a = new Aluno();
-        //TODO set fields
+        try {
+            Endereco e = new Endereco(logradouro.getText().toString(), Integer.parseInt(numero.getText().toString()), complemento.getText().toString(), bairro.getText().toString(), cep.getText().toString(), cidade.getText().toString(), estado.getText().toString());
+            Aluno a = new Aluno(this.id, cpf.getText().toString(), nome.getText().toString(), Integer.parseInt(idade.getText().toString()), e);
+            try {
+                alunoDAO.salvar(a);
+                Toast.makeText(this, "Aluno salvo com sucesso", Toast.LENGTH_SHORT).show();
+            } catch (Exception ex) {
+                Toast.makeText(this, "Não foi possível inserir o aluno", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Verifique as informações antes de salvar", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void remove() {
+        try {
+            alunoDAO.removeById(this.id);
+            Toast.makeText(this, "Aluno removido com sucesso", Toast.LENGTH_SHORT).show();
+            finish();
+        } catch (Exception e) {
+            Toast.makeText(this, "Não foi possivel remover. Tente novamente mais tarde", Toast.LENGTH_SHORT).show();
+        }
     }
 }

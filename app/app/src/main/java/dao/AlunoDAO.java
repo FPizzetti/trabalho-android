@@ -26,24 +26,10 @@ public class AlunoDAO {
         return null;
     }
 
-    public JSONObject getByMatricula(int id) {
+    public JSONObject getByMatricula(String id) {
         try {
-//            String data = dao.doGet("/alunos/" + id);
-            JSONObject jObject = new JSONObject("{\n" +
-                    "\tid: \"grr20142291\",\n" +
-                    "\tcpf: \"09489264922\",\n" +
-                    "\tnome: \"felipe pizzetti\",\n" +
-                    "\tidade: 15,\n" +
-                    "\tendereco: {\n" +
-                    "\t\tlogradouro:\"rua das flores\",\n" +
-                    "\t\tnumero:13,\n" +
-                    "\t\tcomplemento:\"casa\",\n" +
-                    "\t\tbairro:\"pinehirinho\",\n" +
-                    "\t\tcep:\"81870290\",\n" +
-                    "\t\tcidade:\"curitiba\",\n" +
-                    "\t\testado:\"pr\"\n" +
-                    "\t}\n" +
-                    "}");
+            String data = dao.doGet("/alunos/" + id);
+            JSONObject jObject = new JSONObject(data);
             return jObject;
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,14 +37,14 @@ public class AlunoDAO {
         return null;
     }
 
-    public JSONObject salvar(Aluno aluno) {
+    public JSONObject salvar(Aluno a) {
         try {
             Gson json = new Gson();
             String data = "";
-            if (aluno.getId() != null) {
-                data = dao.doPut("/alunos/" + aluno.getId(), json.toJson(aluno));
+            if (a.getId() != null) {
+                data = dao.doPut("/alunos/" + a.getId(), json.toJson(a));
             } else {
-                data = dao.doPost("/alunos", json.toJson(aluno));
+                data = dao.doPost("/alunos", json.toJson(a));
             }
             JSONObject jObject = new JSONObject(data);
             return jObject;
@@ -68,7 +54,7 @@ public class AlunoDAO {
         return null;
     }
 
-    public JSONObject removeById(int id) {
+    public JSONObject removeById(String id) {
         try {
             String data = dao.doDelete("/alunos/" + id);
             JSONObject jObject = new JSONObject(data);

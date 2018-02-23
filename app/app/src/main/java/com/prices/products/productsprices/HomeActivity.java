@@ -122,6 +122,12 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             ListAdapter adapter = new ListCellAlunos(this, search);
             listView.setAdapter(adapter);
         }
-        return false;
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
     }
 }

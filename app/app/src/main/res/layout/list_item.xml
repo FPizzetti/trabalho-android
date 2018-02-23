@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/nome"
@@ -15,8 +16,8 @@
         android:id="@+id/cpf"
         android:layout_width="match_parent"
         android:layout_height="15dp"
-        android:paddingBottom="2dip"
-        android:layout_below="@+id/nome" />
+        android:layout_below="@+id/nome"
+        android:paddingBottom="2dip" />
 
 
 </RelativeLayout>

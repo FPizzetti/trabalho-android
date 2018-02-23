@@ -66,17 +66,17 @@
         <android.support.v7.widget.ListViewCompat
             android:id="@+id/list"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></android.support.v7.widget.ListViewCompat>
+            android:layout_height="450dp"></android.support.v7.widget.ListViewCompat>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
             android:layout_margin="@dimen/fab_margin"
             android:backgroundTint="@color/black"
             android:elevation="6dp"
-            android:src="@android:drawable/ic_menu_add"
-            android:layout_gravity="bottom|center" />
+            android:src="@android:drawable/ic_menu_add" />
 
     </LinearLayout>
 </ScrollView>
