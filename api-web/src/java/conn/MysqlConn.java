@@ -16,7 +16,7 @@ public class MysqlConn {
                 String driver = "com.mysql.jdbc.Driver";
                 String bd = "jdbc:mysql://127.0.0.1:3306/android";
                 String usuario = "root";
-                String senha = "pavilion";
+                String senha = "root";
                 Class.forName(driver);
                 connection = DriverManager.getConnection(bd, usuario, senha);
             } catch (ClassNotFoundException | SQLException e) {

@@ -17,8 +17,7 @@ public class DAO {
 
     private OkHttpClient client;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private final String API_URL =
-            "http://172.20.174.205:8000/";
+    private final String API_URL = "http://192.168.1.19:8084/api-web/api";
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     public DAO() {
@@ -41,6 +40,25 @@ public class DAO {
         Request request = new Request.Builder()
                 .url(API_URL + url)
                 .post(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    public String doPut(String url, String json) throws IOException {
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(API_URL + url)
+                .put(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    public String doDelete(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(API_URL + url)
+                .delete()
                 .build();
         Response response = client.newCall(request).execute();
         return response.body().string();
